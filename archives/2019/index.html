@@ -24,6 +24,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
 
 
 
@@ -94,16 +101,17 @@
 
 
 
-  <meta name="description" content="一个舒服的抄笔记的地方">
+  <meta name="description" content="If I should see you，after long year.How should I greet, with tears, with silence.">
+<meta name="keywords" content="icon">
 <meta property="og:type" content="website">
 <meta property="og:title" content="DieInMemory">
 <meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
 <meta property="og:site_name" content="DieInMemory">
-<meta property="og:description" content="一个舒服的抄笔记的地方">
+<meta property="og:description" content="If I should see you，after long year.How should I greet, with tears, with silence.">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DieInMemory">
-<meta name="twitter:description" content="一个舒服的抄笔记的地方">
+<meta name="twitter:description" content="If I should see you，after long year.How should I greet, with tears, with silence.">
 
 
 
@@ -186,7 +194,7 @@
     </div>
     
       
-        <p class="site-subtitle">If I should see you，after long year.How should I greet, with tears, with silence.</p>
+        <p class="site-subtitle">一个舒服的抄笔记的地方</p>
       
     
     
@@ -441,7 +449,7 @@
               <img class="site-author-image" itemprop="image" src="/images/header.png" alt="扭不动的奥利奥">
             
               <p class="site-author-name" itemprop="name">扭不动的奥利奥</p>
-              <div class="site-description motion-element" itemprop="description">一个舒服的抄笔记的地方</div>
+              <div class="site-description motion-element" itemprop="description">If I should see you，after long year.How should I greet, with tears, with silence.</div>
           </div>
 
           
@@ -498,7 +506,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
@@ -513,17 +521,11 @@
 <!--
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
-
-
-  <span class="post-meta-divider">|</span>
 
 <span id="busuanzi_container_site_uv">
   本站总访问量<span id="busuanzi_value_site_uv"></span>次
 </span>
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.2.0</div>
 
 -->
 <div class="powered-by">
@@ -641,18 +643,8 @@
 
 
   
-
-  
-
-  
-
-  
-
-
-
-  
-
-
+  <script src="/js/js.cookie.js?v=7.2.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.2.0"></script>
 
 
   
@@ -661,9 +653,12 @@
 
   
 
-  
+
 
   
+
+
+
 
   
 
@@ -678,6 +673,57 @@
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      const selection = document.getSelection();
+      const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+      if (selected) {
+        selection.removeAllRanges();
+        selection.addRange(selected);
+      }
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
 
   
 
