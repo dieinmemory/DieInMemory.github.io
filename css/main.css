@@ -1786,7 +1786,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff5781;
+  background: #4e3354;
 }
 .feed-link,
 .chat {
@@ -3014,11 +3014,11 @@ body {
   background: url("/images/backGround.jpg");
 }
 .site-meta {
-  background: #e2e5e7;
+  background: #80aed3;
 }
 .brand {
-  color: #007acc;
+  color: #fff;
 }
 .site-subtitle {
-  color: #007acc;
+  color: #fff;
 }
