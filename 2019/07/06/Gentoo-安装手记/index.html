@@ -124,7 +124,7 @@
 <meta property="og:site_name" content="DieInMemory">
 <meta property="og:description" content="准备工作开局ifconfig 检查网卡型号ifconfig 开启网卡ifconfig wlp1s0 up 配置无线网络假设WiFi名是test 密码是123456 则 wpa_passphrase test &amp;quot;123456&amp;quot; &amp;gt; /etc/wpa_supplicant.conf -B是后台 wpa_supplicant -B -i wlan0 -c /etc/wpa_">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-06T06:16:54.538Z">
+<meta property="og:updated_time" content="2019-07-06T06:23:35.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gentoo 安装手记">
 <meta name="twitter:description" content="准备工作开局ifconfig 检查网卡型号ifconfig 开启网卡ifconfig wlp1s0 up 配置无线网络假设WiFi名是test 密码是123456 则 wpa_passphrase test &amp;quot;123456&amp;quot; &amp;gt; /etc/wpa_supplicant.conf -B是后台 wpa_supplicant -B -i wlan0 -c /etc/wpa_">
@@ -388,7 +388,7 @@
                 
               
 
-              <time title="创建时间：2019-07-06 11:34:53 / 修改时间：14:16:54" itemprop="dateCreated datePublished" datetime="2019-07-06T11:34:53+08:00">2019-07-06</time>
+              <time title="创建时间：2019-07-06 11:34:53 / 修改时间：14:23:35" itemprop="dateCreated datePublished" datetime="2019-07-06T11:34:53+08:00">2019-07-06</time>
             </span>
           
 
@@ -450,7 +450,7 @@
 <p>==<strong>要使引导分区(/dev/sdb2)在ext2和根分区(/dev/sdb4)在ext4中，只需要在创建文件系统时 选no</strong>==</p>
 <h2 id="初始化交换分区"><a href="#初始化交换分区" class="headerlink" title="初始化交换分区"></a>初始化交换分区</h2><p><code>mkswap /dev/sdb3</code></p>
 <h2 id="激活交换"><a href="#激活交换" class="headerlink" title="激活交换"></a>激活交换</h2><p><code>swapon /dev/sdb3</code></p>
-<h2 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h2><p><code>mount /dev/sdb4 /mnt/gentoo</code>  <code>mkdir /mnt/gentoo/boot</code>  <code>mount /dev/sdb2 /mnt/gentoo/boot</code></p>
+<h2 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h2><p><code>mount /dev/sdb4 /mnt/gentoo</code><br><code>mkdir /mnt/gentoo/boot</code><br><code>mount /dev/sdb2 /mnt/gentoo/boot</code></p>
 <h1 id="安装stage3"><a href="#安装stage3" class="headerlink" title="安装stage3"></a>安装stage3</h1><h2 id="校正时间"><a href="#校正时间" class="headerlink" title="校正时间"></a>校正时间</h2><p><code>date</code> // 查看时间</p>
 <h3 id="如果不对，则有两种方法"><a href="#如果不对，则有两种方法" class="headerlink" title="如果不对，则有两种方法"></a>如果不对，则有两种方法</h3><p>a)<code>ntpd -q -g</code> // 自动更新时间 ，相当于同步时间<br>b)<code>date 090113162018</code> // 手动更新：将日期定在2018年9月1日13点16分</p>
 <h2 id="解压安装stage包"><a href="#解压安装stage包" class="headerlink" title="解压安装stage包"></a>解压安装stage包</h2><p><code>cd /mnt/cdrom</code> // 首先找到下载在U盘里的stage3包<br><code>cp ./stage3-*.tar.bz2 ../gentoo</code><br>// 然后复制到根目录<br><code>cd /mnt/gentoo</code>  <code>tar xvjpf stage3-*.tar.bz2</code><br>// 回到根目录，并解压stage3 如果出错可以去掉j</p>
@@ -547,7 +547,7 @@
   <p><span>本文标题:</span><a href="/2019/07/06/Gentoo-安装手记/">Gentoo 安装手记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 扭不动的奥利奥 的个人博客">扭不动的奥利奥</a></p>
   <p><span>发布时间:</span>2019年07月06日 - 11:34</p>
-  <p><span>最后更新:</span>2019年07月06日 - 14:16</p>
+  <p><span>最后更新:</span>2019年07月06日 - 14:23</p>
   <p><span>原始链接:</span><a href="/2019/07/06/Gentoo-安装手记/" title="Gentoo 安装手记">https://DieInMemory.github.io/2019/07/06/Gentoo-安装手记/</a>
     <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://DieInMemory.github.io/2019/07/06/Gentoo-安装手记/" aria-label="复制成功！"></i></span>
   </p>
