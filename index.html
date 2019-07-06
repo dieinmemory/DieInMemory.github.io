@@ -572,7 +572,7 @@
                 
               
 
-              <time title="创建时间：2019-07-06 11:34:53 / 修改时间：11:38:39" itemprop="dateCreated datePublished" datetime="2019-07-06T11:34:53+08:00">2019-07-06</time>
+              <time title="创建时间：2019-07-06 11:34:53 / 修改时间：11:41:53" itemprop="dateCreated datePublished" datetime="2019-07-06T11:34:53+08:00">2019-07-06</time>
             </span>
           
 
@@ -615,82 +615,16 @@
 
       
         
+          <h1 id="Gentoolinux-安装"><a href="#Gentoolinux-安装" class="headerlink" title="Gentoolinux 安装"></a><strong>Gentoolinux 安装</strong></h1>
+          <!--noindex-->
           
-            <h1 id="Gentoolinux-安装"><a href="#Gentoolinux-安装" class="headerlink" title="Gentoolinux 安装"></a><strong>Gentoolinux 安装</strong></h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="开局ifconfig-检查网卡型号"><a href="#开局ifconfig-检查网卡型号" class="headerlink" title="开局ifconfig 检查网卡型号"></a>开局ifconfig 检查网卡型号</h3><p><code>ifconfig</code></p>
-<h3 id="然后开启"><a href="#然后开启" class="headerlink" title="然后开启"></a>然后开启</h3><p><code>ifconfig wlp1s0 up</code></p>
-<h3 id="配置无线网络，假设WiFi名是test-密码是123456-则"><a href="#配置无线网络，假设WiFi名是test-密码是123456-则" class="headerlink" title="配置无线网络，假设WiFi名是test 密码是123456 则"></a>配置无线网络，假设WiFi名是test 密码是123456 则</h3><p><code>wpa_passphrase test &quot;123456&quot; &gt; /etc/wpa_supplicant.conf</code></p>
-<h3 id="B是后台"><a href="#B是后台" class="headerlink" title="B是后台"></a>B是后台</h3><p><code>wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant.conf</code></p>
-<p># </p>
-<h3 id="自动分配ip"><a href="#自动分配ip" class="headerlink" title="自动分配ip"></a>自动分配ip</h3><p><code>dhcpcd</code></p>
-<h3 id="ping一下"><a href="#ping一下" class="headerlink" title="ping一下"></a>ping一下</h3><h3 id="网络正常后-，开始分区"><a href="#网络正常后-，开始分区" class="headerlink" title="网络正常后 ，开始分区"></a>网络正常后 ，开始分区</h3><h3 id="bios-mbr-推荐使用fdisk"><a href="#bios-mbr-推荐使用fdisk" class="headerlink" title="bios + mbr 推荐使用fdisk"></a><strong>bios + mbr 推荐使用fdisk</strong></h3><h5 id="n-是创建"><a href="#n-是创建" class="headerlink" title="n 是创建"></a>n 是创建</h5><h5 id="d-是删除"><a href="#d-是删除" class="headerlink" title="d 是删除"></a>d 是删除</h5><h5 id="a-是设置boot引导"><a href="#a-是设置boot引导" class="headerlink" title="a 是设置boot引导"></a>a 是设置boot引导</h5><h5 id="t-是设置分区类型-82-是swap"><a href="#t-是设置分区类型-82-是swap" class="headerlink" title="t 是设置分区类型 82 是swap"></a>t 是设置分区类型 82 是swap</h5><p>分完后</p>
-<p>/sdb1<br>/sdb2       ext2        /boot<br>/sdb3       no          swap<br>/sdb4       ext4        /<br>​</p>
-<h3 id="创建文件系统-j-启动日志-T-small-增加计算出的inode数量"><a href="#创建文件系统-j-启动日志-T-small-增加计算出的inode数量" class="headerlink" title="创建文件系统 -j 启动日志 -T small 增加计算出的inode数量"></a>创建文件系统 -j 启动日志 -T small 增加计算出的inode数量</h3><p><code>mkfs.ext2 -T small /dev/sdb2</code>  <code>mkfs.ext4 -j /dev/sdb4</code></p>
-<h6 id="使引导分区-dev-sdb2-在ext2和根分区-dev-sdb4-在ext4中，只需要在创建文件系统时-选no"><a href="#使引导分区-dev-sdb2-在ext2和根分区-dev-sdb4-在ext4中，只需要在创建文件系统时-选no" class="headerlink" title="使引导分区(/dev/sdb2)在ext2和根分区(/dev/sdb4)在ext4中，只需要在创建文件系统时 选no"></a>使引导分区(/dev/sdb2)在ext2和根分区(/dev/sdb4)在ext4中，只需要在创建文件系统时 选no</h6><h3 id="初始化交换分区"><a href="#初始化交换分区" class="headerlink" title="初始化交换分区"></a>初始化交换分区</h3><p><code>mkswap /dev/sdb3</code></p>
-<h3 id="激活"><a href="#激活" class="headerlink" title="激活"></a>激活</h3><p><code>swapon /dev/sdb3</code></p>
-<h3 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h3><p><code>mount /dev/sdb4 /mnt/gentoo</code>  <code>mkdir /mnt/gentoo/boot</code>  <code>mount /dev/sdb2 /mnt/gentoo/boot</code></p>
-<h3 id="校正时间"><a href="#校正时间" class="headerlink" title="校正时间"></a>校正时间</h3><p><code>date</code> / 查看</p>
-<h3 id="如果不对，则有两种方法"><a href="#如果不对，则有两种方法" class="headerlink" title="如果不对，则有两种方法"></a>如果不对，则有两种方法</h3><p>a)<code>ntpd -q -g</code> // 自动更新时间 ，相当于同步时间  b)<code>date 090113162018</code> // 手动更新：将日期定在2018年9月1日13点16分</p>
-<h3 id="安装stage3"><a href="#安装stage3" class="headerlink" title="安装stage3"></a>安装stage3</h3><p><code>cd /mnt/cdrom</code> // 首先找到下载在U盘里的stage3包 <code>cp ./stage3-*.tar.bz2 ../gentoo</code> // 然后复制到根目录  <code>cd /mnt/gentoo</code>  <code>tar xvjpf stage3-*.tar.bz2</code> // 回到根目录，并解压stage3 如果出错可以去掉j</p>
-<h3 id="编辑编译配置文件"><a href="#编辑编译配置文件" class="headerlink" title="编辑编译配置文件"></a>编辑编译配置文件</h3><p><code>vi /mnt/gentoo/etc/portage/make.conf</code>  <code>MAKEOPTS=&quot;-j3&quot;</code> // 在文件中添加此行，-j后面的数字 一般是核心数+1</p>
-<h2 id="编译前"><a href="#编译前" class="headerlink" title="编译前"></a>编译前</h2><h3 id="选择镜像"><a href="#选择镜像" class="headerlink" title="选择镜像"></a>选择镜像</h3><p><code>mirrorselect -i -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf</code></p>
-<h5 id="方向键移动上下-空格键选中-回车确定设置"><a href="#方向键移动上下-空格键选中-回车确定设置" class="headerlink" title="方向键移动上下 空格键选中 回车确定设置"></a>方向键移动上下 空格键选中 回车确定设置</h5><h3 id="gentoo主仓库配置"><a href="#gentoo主仓库配置" class="headerlink" title="gentoo主仓库配置"></a>gentoo主仓库配置</h3><p><code>mkdir /mnt/gentoo/etc/portage/repos.conf</code> //如果没有此目录则创建  <code>cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf</code>  // 复制Portage提供的Gentoo仓库配置文件到这个（新创建的）目录</p>
-<h3 id="复制dns信息-确保进入新环境后网络依然可用"><a href="#复制dns信息-确保进入新环境后网络依然可用" class="headerlink" title="复制dns信息 确保进入新环境后网络依然可用"></a>复制dns信息 确保进入新环境后网络依然可用</h3><p><code>cp -L /etc/resolv.conf /mnt/gentoo/etc/</code></p>
-<h3 id="挂载必要的文件系统"><a href="#挂载必要的文件系统" class="headerlink" title="挂载必要的文件系统"></a>挂载必要的文件系统</h3><p><code>mount -t proc proc /mnt/gentoo/proc</code>  // 一个pseudo文件系统（看起来像是常规文件，事实上却是实时生成的），由Linux内核提供的一些环境信息  <code>mount --rbind /sys /mnt/gentoo/sys</code>  <code>mount --make-rslave /mnt/gentoo/sys</code>  // 一个pseudo文件系统，像要被取代的/proc/一样，比/proc/更加有结构  <code>mount --rbind /dev /mnt/gentoo/dev</code>  <code>mount --make-rslave /mnt/gentoo/dev</code>  // 一个包含全部设备文件的常规文件系统，一部分由Linux设备管理器（通常是udev管理）</p>
-<h3 id="基础环境安装完毕，进入新环境"><a href="#基础环境安装完毕，进入新环境" class="headerlink" title="基础环境安装完毕，进入新环境"></a>基础环境安装完毕，进入新环境</h3><p><code>chroot /mnt/gentoo /bin/bash</code> // 使用chroot将根位置从/（u盘启动系统）更改成/mnt/gentoo/，就是进入刚刚我们布局的分区和挂载  <code>source /etc/profile</code> // 使用source命令将一些设置（那些在/etc/profile中的）重新载入到内存中 <code>export PS1=&quot;(chroot) $PS1&quot;</code> // 更改主提示符来帮助我们记住当前会话在一个chroot环境里面（可选）</p>
-<hr>
-<h3 id="安装时，如果在这之后的任何一个步骤中断，都可以从这一步继续安装，不必从头再来-只需要挂载分区-然后复制dns重新进入即可"><a href="#安装时，如果在这之后的任何一个步骤中断，都可以从这一步继续安装，不必从头再来-只需要挂载分区-然后复制dns重新进入即可" class="headerlink" title="安装时，如果在这之后的任何一个步骤中断，都可以从这一步继续安装，不必从头再来 只需要挂载分区 然后复制dns重新进入即可"></a>安装时，如果在这之后的任何一个步骤中断，都可以从这一步继续安装，不必从头再来 只需要挂载分区 然后复制dns重新进入即可</h3><p>mount /dev/sdb4 /mnt/gentoo // 首先挂载根目录  cp -L /etc/resolv.conf /mnt/gentoo/etc/ // 复制dns信息，若之前复制过，提示是否覆盖，回车确定即可</p>
-<h3 id="挂载必要的文件系统-1"><a href="#挂载必要的文件系统-1" class="headerlink" title="挂载必要的文件系统"></a>挂载必要的文件系统</h3><p><code>mount -t proc proc /mnt/gentoo/proc</code>  <code>mount --rbind /sys /mnt/gentoo/sys</code>  <code>mount --make-rslave /mnt/gentoo/sys</code>  <code>mount --rbind /dev /mnt/gentoo/dev</code>  <code>mount --make-rslave /mnt/gentoo/dev</code></p>
-<h3 id="重新进入新环境"><a href="#重新进入新环境" class="headerlink" title="重新进入新环境"></a>重新进入新环境</h3><p><code>chroot /mnt/gentoo /bin/bash</code>  source /etc/profile  export PS1=”(chroot) $PS1”</p>
-<hr>
-<h3 id="获取ebuild-版本库-repository-快照-有两种方式-二选一"><a href="#获取ebuild-版本库-repository-快照-有两种方式-二选一" class="headerlink" title="获取ebuild 版本库(repository) 快照 有两种方式 二选一"></a>获取ebuild 版本库(repository) 快照 有两种方式 二选一</h3><p>a) 一般操作  <code>emerge-webrsync</code>  b）获取最新的（一小时之内的）的快照  <code>emerge --sync</code> // 使用rsync协议来更新 Gentoo ebuild 数据库（之前通过emerge-webrsync获得的）到最新状态</p>
-<h3 id="选择配置文件"><a href="#选择配置文件" class="headerlink" title="选择配置文件"></a>选择配置文件</h3><p><code>eselect profile list</code> // 查看当前使用的配置文件和可选配置文件  <code>eselect profile set 1</code> // 选择配置文件</p>
-<h3 id="初始化选择环境"><a href="#初始化选择环境" class="headerlink" title="初始化选择环境"></a>初始化选择环境</h3><p><code>emerge --ask --update --deep --newuse @world</code> // atom530 大约是42min47s4</p>
-<h3 id="设定时区"><a href="#设定时区" class="headerlink" title="设定时区"></a>设定时区</h3><p><code>echo &quot;Asia/Shanghai&quot; &gt; /etc/timezone</code></p>
-<h3 id="重新配置sys-libs-timezone-data包，更新-etc-localtime文件，-etc-localtime文件用于让系统的C类库知道系统在什么时区"><a href="#重新配置sys-libs-timezone-data包，更新-etc-localtime文件，-etc-localtime文件用于让系统的C类库知道系统在什么时区" class="headerlink" title="重新配置sys-libs/timezone-data包，更新/etc/localtime文件，/etc/localtime文件用于让系统的C类库知道系统在什么时区"></a>重新配置sys-libs/timezone-data包，更新/etc/localtime文件，/etc/localtime文件用于让系统的C类库知道系统在什么时区</h3><p><code>emerge --config sys-libs/timezone-data</code></p>
-<h3 id="设置地区"><a href="#设置地区" class="headerlink" title="设置地区"></a>设置地区</h3><p><code>nano -w /etc/locale.gen</code></p>
-<p>en_US ISO-8859-1<br>en_US.UTF-8 UTF-8<br>zh_CN GBK<br>zh_CN.UTF-8 UTF-8</p>
-<p>// 在文中添加如上信息</p>
-<h3 id="验证当前可用地区"><a href="#验证当前可用地区" class="headerlink" title="验证当前可用地区"></a>验证当前可用地区</h3><p><code>locale -a</code></p>
-<h3 id="设定地区"><a href="#设定地区" class="headerlink" title="设定地区"></a>设定地区</h3><p><code>eselect locale set 8</code> //选择en_US.utf8,不然后面的步骤中可能会出现乱码 比如：时间信息</p>
-<h3 id="如果上面无法应用en-US-utf8，还可以通过手动编辑文件来完成："><a href="#如果上面无法应用en-US-utf8，还可以通过手动编辑文件来完成：" class="headerlink" title="如果上面无法应用en_US.utf8，还可以通过手动编辑文件来完成："></a>如果上面无法应用en_US.utf8，还可以通过手动编辑文件来完成：</h3><p><code>/etc/env.d/02locale</code>  LANG=”en_US.utf8”</p>
-<h3 id="重新加载环境"><a href="#重新加载环境" class="headerlink" title="重新加载环境"></a>重新加载环境</h3><p><code>env-update &amp;&amp; source /etc/profile &amp;&amp; export PS1=&quot;(chroot) $PS1&quot;</code></p>
-<h3 id="自动选择一个合适的内核并使用emerge来安装它"><a href="#自动选择一个合适的内核并使用emerge来安装它" class="headerlink" title="自动选择一个合适的内核并使用emerge来安装它"></a>自动选择一个合适的内核并使用emerge来安装它</h3><p><code>emerge --ask sys-kernel/gentoo-sources</code>  <code>ls -l /usr/src/linux</code> // 可以看到已经在/usr/src/中安装Linux内核源码，并有一个符号连接叫作linux将指向安装的内核源码</p>
-<h2 id="编译安装内核"><a href="#编译安装内核" class="headerlink" title="编译安装内核"></a>编译安装内核</h2><h4 id="a）-手动编译"><a href="#a）-手动编译" class="headerlink" title="a） 手动编译"></a>a） 手动编译</h4><h4 id="b）-利用genkernel工具来全自动编译安装"><a href="#b）-利用genkernel工具来全自动编译安装" class="headerlink" title="b） 利用genkernel工具来全自动编译安装"></a>b） 利用genkernel工具来全自动编译安装</h4><h3 id="下载安装genkernel"><a href="#下载安装genkernel" class="headerlink" title="下载安装genkernel"></a>下载安装genkernel</h3><p><code>emerge --ask sys-kernel/genkernel</code></p>
-<h3 id="编辑-etc-fstab文件来使包含有第二个值为-boot-的那条的第一个值指向到正确的设备"><a href="#编辑-etc-fstab文件来使包含有第二个值为-boot-的那条的第一个值指向到正确的设备" class="headerlink" title="编辑/etc/fstab文件来使包含有第二个值为/boot/的那条的第一个值指向到正确的设备"></a>编辑/etc/fstab文件来使包含有第二个值为/boot/的那条的第一个值指向到正确的设备</h3><p><code>nano -w /etc/fstab</code></p>
-<p>/dev/sdb2   /boot   ext2    defaults    0 2</p>
-<!--在文件中添加如上一行-->
-
-<h3 id="编译内核源码"><a href="#编译内核源码" class="headerlink" title="编译内核源码"></a>编译内核源码</h3><p><code>genkernel all</code></p>
-<h6 id="此时如果提示找不到命令，说明安装失败，则进行下列步骤"><a href="#此时如果提示找不到命令，说明安装失败，则进行下列步骤" class="headerlink" title="此时如果提示找不到命令，说明安装失败，则进行下列步骤"></a>此时如果提示找不到命令，说明安装失败，则进行下列步骤</h6><p><code>dispatch-conf</code>  //接着摁两下u ，命令执行完毕后，重新安装genkernel <code>emerge --ask sys-kernel/genkernel</code></p>
-<h3 id="再次执行"><a href="#再次执行" class="headerlink" title="再次执行"></a>再次执行</h3><p><code>genkernel all</code></p>
-<h3 id="此时应该genkernel开始工作了，耐心等待-（13h"><a href="#此时应该genkernel开始工作了，耐心等待-（13h" class="headerlink" title="此时应该genkernel开始工作了，耐心等待 （13h"></a>此时应该genkernel开始工作了，耐心等待 （13h</h3><h3 id="编译完成后，查看一下"><a href="#编译完成后，查看一下" class="headerlink" title="编译完成后，查看一下"></a>编译完成后，查看一下</h3><p><code>ls /boot/kernel* /boot/initramfs*</code></p>
-<h3 id="安装固件"><a href="#安装固件" class="headerlink" title="安装固件"></a>安装固件</h3><p><code>emerge --ask sys-kernel/linux-firmware</code></p>
-<h3 id="编辑分区文件-挂载分区-建议使用uuid-不会被混淆"><a href="#编辑分区文件-挂载分区-建议使用uuid-不会被混淆" class="headerlink" title="编辑分区文件,挂载分区 建议使用uuid 不会被混淆"></a>编辑分区文件,挂载分区 建议使用uuid 不会被混淆</h3><h3 id="查看uuid"><a href="#查看uuid" class="headerlink" title="查看uuid"></a>查看uuid</h3><p><code>blkid</code></p>
-<p> /dev/sdb1  uuid= 294848f3-01<br> /dev/sdb2  uuid= “b6e7b211-c209-4aa4-a238-a0df5ec51bdc”   ext4    PARTUUID = “294848f3-02”<br> /dev/sdb3  uuid= “deve0e57-db19-4e3a-a92b-960d9917b2e2”   swap    PARTUUID =” 294848f3-03”<br> /dev/sdb4  uuid= “cfa8d625-cc0e-4c1a-9dd9-70e1f8055a08”   ext4    PARTUUID =” 294848f3-04” </p>
-<p><code>nano -w /etc/fstab</code> //在文件中 添加挂载信息 每字段用两个tap隔开</p>
-<p>/dev/sdb2       /boot       ext2        defaults,noatime        0 2<br>/dev/sdb3       none        swap        sw      0 0<br>/dev/sdb4       /           ext4        noatime     0 1<br>/dev/cdrom      /mnt/cdrom  auto        noatime,user        0 0 </p>
-<h3 id="设置主机名"><a href="#设置主机名" class="headerlink" title="设置主机名"></a>设置主机名</h3><p><code>nano -w /etc/conf.d/hostname</code></p>
-<p> hostname=”主机名”</p>
-<h3 id="安装PCMCIA-笔记本pci拓展坞"><a href="#安装PCMCIA-笔记本pci拓展坞" class="headerlink" title="安装PCMCIA(笔记本pci拓展坞)"></a>安装PCMCIA(笔记本pci拓展坞)</h3><p><code>emerge --ask sys-apps/pcmciautils</code></p>
-<h3 id="设置root密码"><a href="#设置root密码" class="headerlink" title="设置root密码"></a>设置root密码</h3><p><code>passwd</code></p>
-<h2 id="安装系统工具"><a href="#安装系统工具" class="headerlink" title="安装系统工具"></a>安装系统工具</h2><h3 id="安装系统日志"><a href="#安装系统日志" class="headerlink" title="安装系统日志"></a>安装系统日志</h3><p><code>emerge --ask app-admin/sysklogd</code></p>
-<h3 id="加入到默认的运行级别"><a href="#加入到默认的运行级别" class="headerlink" title="加入到默认的运行级别"></a>加入到默认的运行级别</h3><p><code>rc-update add sysklogd default</code></p>
-<h3 id="安装守护进程"><a href="#安装守护进程" class="headerlink" title="安装守护进程"></a>安装守护进程</h3><p><code>emerge --ask sys-process/cronie</code></p>
-<h3 id="加入到默认的运行行列"><a href="#加入到默认的运行行列" class="headerlink" title="加入到默认的运行行列"></a>加入到默认的运行行列</h3><p><code>rc-update add cronie default</code></p>
-<h3 id="安装文件索引工具"><a href="#安装文件索引工具" class="headerlink" title="安装文件索引工具"></a>安装文件索引工具</h3><p><code>emerge --ask sys-apps/mlocate</code></p>
-<h3 id="自动开启远程服务ssh"><a href="#自动开启远程服务ssh" class="headerlink" title="自动开启远程服务ssh"></a>自动开启远程服务ssh</h3><p><code>rc-update add sshd default</code></p>
-<h3 id="安装网络工具"><a href="#安装网络工具" class="headerlink" title="安装网络工具"></a>安装网络工具</h3><p><code>emerge --ask net-misc/dhcpcd</code></p>
-<h3 id="安装pppoe客户端"><a href="#安装pppoe客户端" class="headerlink" title="安装pppoe客户端"></a>安装pppoe客户端</h3><p><code>emerge --ask net-dialup/ppp</code></p>
-<h3 id="安装无线连接工具"><a href="#安装无线连接工具" class="headerlink" title="安装无线连接工具"></a>安装无线连接工具</h3><p><code>emerge --ask net-wireless/wireless-tools</code>  <code>emerge --ask net-wireless/iw</code></p>
-<h3 id="安装wpa支持，让gentoo可连接wpa路由器"><a href="#安装wpa支持，让gentoo可连接wpa路由器" class="headerlink" title="安装wpa支持，让gentoo可连接wpa路由器"></a>安装wpa支持，让gentoo可连接wpa路由器</h3><p><code>emerge --ask net-wireless/wpa_supplicant</code></p>
-<h2 id="配置引导"><a href="#配置引导" class="headerlink" title="配置引导"></a>配置引导</h2><h3 id="安装grub2"><a href="#安装grub2" class="headerlink" title="安装grub2"></a>安装grub2</h3><p><code>emerge --ask --verbose sys-boot/grub:2</code></p>
-<h3 id="把引导安装到硬盘上"><a href="#把引导安装到硬盘上" class="headerlink" title="把引导安装到硬盘上"></a>把引导安装到硬盘上</h3><h6 id="a-BIOS"><a href="#a-BIOS" class="headerlink" title="a) BIOS"></a>a) BIOS</h6><p><code>grub-install /dev/sdb</code></p>
-<h6 id="b-UEFI"><a href="#b-UEFI" class="headerlink" title="b) UEFI"></a>b) UEFI</h6><h3 id="在运行grub-install之前，确保已经安装了EFI系统分区GRUB-install可以将GRUB-EFI文件-grubx64-efi-安装到错误的目录中-不提供使用错误目录的任何指示"><a href="#在运行grub-install之前，确保已经安装了EFI系统分区GRUB-install可以将GRUB-EFI文件-grubx64-efi-安装到错误的目录中-不提供使用错误目录的任何指示" class="headerlink" title="在运行grub-install之前，确保已经安装了EFI系统分区GRUB. -install可以将GRUB EFI文件(grubx64.efi)安装到错误的目录中,不提供使用错误目录的任何指示."></a>在运行grub-install之前，确保已经安装了EFI系统分区GRUB. -install可以将GRUB EFI文件(grubx64.efi)安装到错误的目录中,不提供使用错误目录的任何指示.</h3><p><code>grub-install --target=x86_64-efi --efi-directory=/boot</code></p>
-<h5 id="将–aix-directory选项修改为EFI系统分区的根，如果-boot分区没有格式化为FAT分区，那么这是必要的"><a href="#将–aix-directory选项修改为EFI系统分区的根，如果-boot分区没有格式化为FAT分区，那么这是必要的" class="headerlink" title="将–aix-directory选项修改为EFI系统分区的根，如果/boot分区没有格式化为FAT分区，那么这是必要的."></a>将–aix-directory选项修改为EFI系统分区的根，如果/boot分区没有格式化为FAT分区，那么这是必要的.</h5><h6 id="如果GRUB安装是出现错误，如Could-not-prepare-Boot-variable-Read-only-file-system，可能需要将efivars挂载为读写，这样才能成功：-如果GRUB安装是出现错误，如Could-not-prepare-Boot-variable-Read-only-file-system，可能需要将efivars挂载为读写，这样才能成功：-将–aix-directory选项修改为EFI系统分区的根，如果-boot分区没有格式化为FAT分区，那么这是必要的"><a href="#如果GRUB安装是出现错误，如Could-not-prepare-Boot-variable-Read-only-file-system，可能需要将efivars挂载为读写，这样才能成功：-如果GRUB安装是出现错误，如Could-not-prepare-Boot-variable-Read-only-file-system，可能需要将efivars挂载为读写，这样才能成功：-将–aix-directory选项修改为EFI系统分区的根，如果-boot分区没有格式化为FAT分区，那么这是必要的" class="headerlink" title="如果GRUB安装是出现错误，如Could not prepare Boot variable: Read-only file system，可能需要将efivars挂载为读写，这样才能成功：// 如果GRUB安装是出现错误，如Could not prepare Boot variable: Read-only file system，可能需要将efivars挂载为读写，这样才能成功：// 将–aix-directory选项修改为EFI系统分区的根，如果/boot分区没有格式化为FAT分区，那么这是必要的."></a>如果GRUB安装是出现错误，如Could not prepare Boot variable: Read-only file system，可能需要将efivars挂载为读写，这样才能成功：// 如果GRUB安装是出现错误，如Could not prepare Boot variable: Read-only file system，可能需要将efivars挂载为读写，这样才能成功：// 将–aix-directory选项修改为EFI系统分区的根，如果/boot分区没有格式化为FAT分区，那么这是必要的.</h6><p><code>mount -o remount,rw /sys/firmware/efi/efivars</code></p>
-<h6 id="一些主板制造商似乎只支持efi系统分区-ESP-中-efi文件的-efi-boot-目录位置，"><a href="#一些主板制造商似乎只支持efi系统分区-ESP-中-efi文件的-efi-boot-目录位置，" class="headerlink" title="一些主板制造商似乎只支持efi系统分区(ESP)中. efi文件的/efi/boot/目录位置，"></a>一些主板制造商似乎只支持efi系统分区(ESP)中. efi文件的/efi/boot/目录位置，</h6><h6 id="GRUB安装程序可以使用–removable选项自动执行此操作。在运行以下命令之前，请验证ESP是否已挂载。"><a href="#GRUB安装程序可以使用–removable选项自动执行此操作。在运行以下命令之前，请验证ESP是否已挂载。" class="headerlink" title="GRUB安装程序可以使用–removable选项自动执行此操作。在运行以下命令之前，请验证ESP是否已挂载。"></a>GRUB安装程序可以使用–removable选项自动执行此操作。在运行以下命令之前，请验证ESP是否已挂载。</h6><h3 id="假设ESP安装在-boot-如前面所建议的-，执行"><a href="#假设ESP安装在-boot-如前面所建议的-，执行" class="headerlink" title="假设ESP安装在/boot(如前面所建议的)，执行:"></a>假设ESP安装在/boot(如前面所建议的)，执行:</h3><p><code>grub-install --target=x86_64-efi --efi-directory=/boot --removable</code></p>
-<h3 id="这将创建UEFI规范定义的默认目录，然后复制grubx64。将efi文件设置为相同规范定义的“默认”efi文件位置。"><a href="#这将创建UEFI规范定义的默认目录，然后复制grubx64。将efi文件设置为相同规范定义的“默认”efi文件位置。" class="headerlink" title="这将创建UEFI规范定义的默认目录，然后复制grubx64。将efi文件设置为相同规范定义的“默认”efi文件位置。"></a>这将创建UEFI规范定义的默认目录，然后复制grubx64。将efi文件设置为相同规范定义的“默认”efi文件位置。</h3><h3 id="生成最终grub2配置文件"><a href="#生成最终grub2配置文件" class="headerlink" title="生成最终grub2配置文件"></a>生成最终grub2配置文件</h3><p><code>grub-mkconfig -o /boot/grub/grub.cfg</code></p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/06/Gentoo-安装手记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
